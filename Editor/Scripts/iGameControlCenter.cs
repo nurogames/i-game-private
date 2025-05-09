@@ -83,6 +83,20 @@ namespace iGame.Editor
         {
             loginPage.style.display = m_IsLoggedIn ? DisplayStyle.None : DisplayStyle.Flex;
 
+            if (m_Window == null)
+                m_Window = GetWindow<iGameControlCenter>(true, "i-Game");
+
+            if (m_IsLoggedIn)
+            {
+                m_Window.minSize = new Vector2(1200, 800);
+                m_Window.maxSize = new Vector2(1200, 800);
+            }
+            else
+            {
+                m_Window.minSize = new Vector2(400, 500);
+                m_Window.maxSize = new Vector2(400, 500);
+            }
+
             TextField emailField = loginPage.Q<TextField>("LoginEmailTextField");
             TextField passwordField = loginPage.Q<TextField>("LoginPasswordTextField");
             Button loginButton = loginPage.Q<Button>("LoginButton");
@@ -97,6 +111,9 @@ namespace iGame.Editor
                 // Switch to main page after login
                 loginPage.style.display = DisplayStyle.None;
                 loginPage.parent.Q("MainPage").style.display = DisplayStyle.Flex;
+
+                if(m_Window == null)
+                    m_Window = GetWindow<iGameControlCenter>(true, "i-Game");
 
                 m_Window.minSize = new Vector2(1200, 800);
                 m_Window.maxSize = new Vector2(1200, 800);
@@ -232,10 +249,18 @@ namespace iGame.Editor
 
 
             Button installButton = packageInfoArea.Q<Button>("InstallPackageButton");
-            installButton.clicked += () => InstallPackage(packageInfoArea);
+            installButton.clicked += () =>
+            {
+                installButton.enabledSelf = false;
+                InstallPackage(packageInfoArea);
+            };
 
             Button removeButton = packageInfoArea.Q<Button>("RemovePackageButton");
-            removeButton.clicked += () => RemovePackage(packageInfoArea);
+            removeButton.clicked += () =>
+            {
+                removeButton.enabledSelf = false;
+                RemovePackage(packageInfoArea);
+            };
         }
 
         private void SetupSettingsPage(VisualElement settingsPage)
@@ -332,6 +357,7 @@ namespace iGame.Editor
 
             Button removeButton = packageInfoArea.Q<Button>("RemovePackageButton");
             removeButton.style.display = isInstalled ? DisplayStyle.Flex : DisplayStyle.None;
+            removeButton.enabledSelf = !string.IsNullOrEmpty(package.PackageHandle);
         }
 
         private void InstallPackage(VisualElement packageInfoArea)
