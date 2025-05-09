@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6cb463d33e5f14692773fb48d11ee5, type: 3}
+  m_Name: iGameProjects
+  m_EditorClassIdentifier: 
+  Projects:
+  - m_Name: Project 1
+    m_Description: My Project one
+    m_Icon: {fileID: 2800000, guid: 4c5a5b8b4655ffd4ab94659614a22706, type: 3}
+    m_CreationDatum: Today
+  - m_Name: Game of the Future
+    m_Description: Cool game
+    m_Icon: {fileID: 2800000, guid: 14f2ba1f1e4dbe04e94c9be4476ee18c, type: 3}
+    m_CreationDatum: Tomorrow
+  - m_Name: Our Museum Game
+    m_Description: Scavenger hunt in a museum
+    m_Icon: {fileID: 2800000, guid: 60c4a66f2da001e46a8a17c099893f4c, type: 3}
+    m_CreationDatum: 08.05.2025

@@ -1,0 +1,106 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.nuro.i-game.core/Editor/UI/iGameStyleSheet.uss?fileID=7433441132597879392&amp;guid=3c235563d3f43964fa6d5042dd24633d&amp;type=3#iGameStyleSheet" />
+    <ui:VisualElement name="MainDocument" style="flex-grow: 1; background-color: rgb(255, 255, 255);">
+        <ui:VisualElement name="LoginPage" enabled="true" style="flex-grow: 1; display: none;">
+            <ui:VisualElement name="Logo" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="LoginInputContainer" style="width: 65%; align-self: center; margin-bottom: 50px;">
+                <ui:TextField placeholder-text="Email" keyboard-type="EmailAddress" name="LoginEmailTextField" style="font-size: 16px;" />
+                <ui:TextField placeholder-text="Password" password="true" name="LoginPasswordTextField" style="font-size: 16px; margin-top: 10px; margin-bottom: 10px;" />
+                <ui:Button text="Login" name="LoginButton" style="margin-top: 20px; height: 40px; -unity-font-style: bold; font-size: 22px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="MainPage" style="flex-grow: 1;">
+            <ui:VisualElement name="MenuBar" style="flex-direction: row; height: 40px; padding-top: 3px; padding-right: 3px; padding-bottom: 3px; padding-left: 3px; border-bottom-width: 2px; border-left-color: rgb(128, 128, 128); border-right-color: rgb(128, 128, 128); border-top-color: rgb(128, 128, 128); border-bottom-color: rgb(128, 128, 128); background-color: rgb(255, 255, 255);">
+                <ui:Button name="i-GameMenuButton" tooltip="Open i-Game Website" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); background-color: rgb(255, 255, 255); -unity-background-scale-mode: scale-to-fit; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 40px;" />
+                <ui:Button text="General" name="GeneralMenuButton" tooltip="General" class="menu-button" />
+                <ui:Button text="Projects" name="ProjectsMenuButton" tooltip="Projects" class="menu-button" />
+                <ui:VisualElement name="SelectedProjectMenu" class="selected-project-menu-container">
+                    <ui:Label text="Label" name="SelectedProjectNameLabel" class="selected-project-menu-label" />
+                    <ui:Button text="Overview" name="SelectedProjectOverviewMenuButton" tooltip="Project Overview of the selected Project" class="selected-project-menu-button" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                <ui:Button text="Package Manager" name="PackageManagerMenuButton" tooltip="i-Game Package Manager" class="menu-button" />
+                <ui:Button name="SettingsMenuButton" tooltip="Settings" class="menu-button" style="-unity-background-scale-mode: scale-to-fit; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 32px; height: 32px;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/icon_Settings.png?fileID=2800000&amp;guid=54032014f9d825c428bce1006aa8c470&amp;type=3#icon_Settings&quot;);" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="ContentArea" style="flex-grow: 1; background-color: rgb(242, 242, 242); flex-shrink: 0;">
+                <ui:VisualElement name="BackgroundIcon" style="flex-grow: 1; position: absolute; top: 0; left: 1px; right: 0; bottom: 0; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); -unity-background-scale-mode: scale-to-fit; opacity: 0.02;" />
+                <ui:VisualElement name="GeneralPage" style="display: none; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px;">
+                    <ui:VisualElement name="About" style="flex-direction: row; height: 400px;">
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/igame-website-pic-LEFT.png?fileID=2800000&amp;guid=d60a5f77109230c4bb79445ffdb3954e&amp;type=3#igame-website-pic-LEFT&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/igame-website-pic-RIGHT.png?fileID=2800000&amp;guid=732ba2fcd6c5b4c48b0a70703b054ff7&amp;type=3#igame-website-pic-RIGHT&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="InformationArea" style="flex-direction: row; justify-content: center; margin-top: 50px;">
+                        <ui:Button name="AboutIGameButton" class="InfoButton WhiteButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W)%20Squared.png?fileID=2800000&amp;guid=045af85d966567b468b79dbcb2a5ad59&amp;type=3#i-game_Logo (B&amp;W) Squared&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="About i-Game" name="InfoButtonLabel" class="InfoButtonLabel" />
+                        </ui:Button>
+                        <ui:Button name="LicenseButton" class="InfoButton YellowButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_License.png?fileID=2800000&amp;guid=bd1cbf63704a9cc46826edb5aab9bef8&amp;type=3#Icon_License&quot;);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="License" name="InfoButtonLabel" class="InfoButtonLabel" />
+                        </ui:Button>
+                        <ui:Button name="AiDisclaimerButton" class="InfoButton PinkButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_Info.png?fileID=2800000&amp;guid=cf754b5d61d3a0b41bb00657b06e0813&amp;type=3#Icon_Info&quot;);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="Ai Disclaimer" name="InfoButtonLabel" class="InfoButtonLabel" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ProjectsPage" style="flex-grow: 1; flex-direction: row; display: none; flex-shrink: 0;">
+                    <ui:ScrollView name="ProjectsScrollView" style="flex-grow: 1; flex-shrink: 0; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-left-color: rgb(64, 64, 64); border-right-color: rgb(64, 64, 64); border-top-color: rgb(64, 64, 64); border-bottom-color: rgb(64, 64, 64); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                        <ui:Button class="project-button">
+                            <ui:VisualElement style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(Magenta).png?fileID=2800000&amp;guid=4c5a5b8b4655ffd4ab94659614a22706&amp;type=3#i-game_Logo (Magenta)&quot;); -unity-background-scale-mode: scale-to-fit; flex-grow: 1;" />
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="Our Museum Game" class="project-button-title-label" />
+                                    <ui:Label text="08.05.2025" class="project-button-date-label" />
+                                </ui:VisualElement>
+                                <ui:Label text="Scavenger hunt in a museum" class="project-button-label" style="-unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+                <ui:VisualElement name="SelectedProjectPage" style="flex-grow: 1; flex-direction: row; align-items: center; display: none;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); -unity-background-scale-mode: scale-to-fit; width: 300px; height: 750px; margin-left: 100px;" />
+                    <ui:VisualElement style="flex-grow: 1; margin-right: 200px;">
+                        <ui:Label text="WORK IN&#10;PROGRESS" name="Label" style="font-size: 75px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+                        <ui:Label text="i-Game Unity &#10;Tools Package" name="Label" style="font-size: 36px; -unity-font-style: bold; -unity-text-align: upper-center; margin-top: 16px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="PackageManagerPage" style="flex-grow: 1; flex-direction: row; display: flex;">
+                    <ui:ScrollView horizontal-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; border-right-width: 1px; border-right-color: rgb(51, 51, 51);" />
+                    <ui:VisualElement name="PackageInfoArea" style="flex-grow: 1; flex-shrink: 0; width: 60%; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;">
+                        <ui:VisualElement name="PackageInfoHeader" style="flex-direction: row;">
+                            <ui:VisualElement name="PackageIcon" class="package-manager-info-icon" style="-unity-background-scale-mode: scale-to-fit;" />
+                            <ui:Label text="Label" name="PackageNameLabel" class="package-manager-info-title-label" />
+                        </ui:VisualElement>
+                        <ui:Label text="Package Handle:" name="PackageHandleLabelLabel" selectable="true" class="package-manager-info-label-small-label" />
+                        <ui:Label text="Label" name="PackageHandleLabel" class="package-manager-info-small-label" />
+                        <ui:Label text="Git Url:" name="GitUrlLabelLabel" class="package-manager-info-label-small-label" />
+                        <ui:Label text="Label" name="PackageGitUrlLabel" class="package-manager-info-small-label" />
+                        <ui:Label text="Description:" name="PackageDescriptionLabelLabel" class="package-manager-info-label-label" />
+                        <ui:Label text="Label" name="PackageDescriptionLabel" class="package-manager-info-label" />
+                        <ui:Button text="Install" name="InstallPackageButton" class="package-manager-install-button" />
+                        <ui:Button text="Remove" name="RemovePackageButton" class="package-manager-deinstall-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="SettingsPage" style="flex-grow: 1; flex-direction: row; align-items: center; display: none;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); -unity-background-scale-mode: scale-to-fit; width: 300px; height: 750px; margin-left: 100px;" />
+                    <ui:VisualElement style="flex-grow: 1; margin-right: 200px;">
+                        <ui:Label text="WORK IN&#10;PROGRESS" name="Label" style="font-size: 75px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+                        <ui:Label text="i-Game Unity &#10;Tools Package" name="Label" style="font-size: 36px; -unity-font-style: bold; -unity-text-align: upper-center; margin-top: 16px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="TextWindow" style="flex-grow: 1; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0, 0, 0, 0.75); display: none;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="margin-top: 75px; margin-right: 75px; margin-bottom: 75px; margin-left: 75px; flex-grow: 1; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px; background-color: rgba(0, 0, 0, 0.75); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-left-color: rgb(102, 102, 102); border-right-color: rgb(102, 102, 102); border-top-color: rgb(102, 102, 102); border-bottom-color: rgb(102, 102, 102); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;">
+                    <ui:Label text="The project “Building a community for the co-creation of games with high impact on innovation, sustainability, social cohesion, and growth“, abbreviated as i-Game, implemented under the “Horizon Europe” Programme, aims to create an accessible platform for the design and development of open-source games. This platform will facilitate the co-creation of games by different interested parties in ecosystems of cultural and creative sectors and industries (CCSI), to enhance innovation with a positive impact on social cohesion and sustainability." name="TextWindowLabel" style="white-space: pre-wrap; color: rgb(229, 229, 229); font-size: 16px;" />
+                </ui:ScrollView>
+                <ui:Button name="TextWindowCloseButton" style="position: absolute; top: 30px; right: 30px; width: 25px; height: 25px; background-color: rgba(188, 188, 188, 0); background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_Close.png?fileID=2800000&amp;guid=acc10c1d5b3b1ca4cb6134bf2dc4b5bb&amp;type=3#Icon_Close&quot;); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

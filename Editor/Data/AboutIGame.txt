@@ -1,0 +1,23 @@
+<size=24><b>About i-Game</b></size>
+
+The project “Building a community for the co-creation of games with high impact on innovation, sustainability, social cohesion, and growth“, abbreviated as i-Game, implemented under the “Horizon Europe” Programme, aims to create an accessible platform for the design and development of open-source games. This platform will facilitate the co-creation of games by different interested parties in ecosystems of cultural and creative sectors and industries (CCSI), to enhance innovation with a positive impact on social cohesion and sustainability.
+
+In European society, video games are significant both as a cultural and commercial industry and as an important aspect of people’s daily lives. When compared to other economic sectors, the EU’s video game market exhibits a rapid growth rate.
+
+Recognizing the importance of video games in the modern cultural environment, the three-year European project, “i-Game,” aims to:
+
+    - Attract interested parties and professionals from the world of video games, of different abilities, specializations, and expertise, providing them with knowledge, presenting new ideas, in order to enable them to exploit new opportunities.
+
+    - Provide a collaboration platform with innovative tools for co-creating games for mobile devices and virtual reality devices with the participation of users (game designers, game developers, end users) from different backgrounds and sectors.
+
+    - Develop an ethical design culture in the video game industry.
+
+    - Monitor, evaluate, and manage the impact that video games have on different sectors, mainly targeting culture (museums), the creative industries, and the fashion/textile industry.
+
+    - Understand why and how online games positively affect people, culture, and society, elements that will help us extract the necessary ingredients for the development of a new generation of games aimed at improving people’s well-being.
+
+The accessible, inclusive platform will facilitate the participation of a diverse group of interested parties, enriching the community with advanced ideas and backgrounds, allowing the creation of new alliances, solutions, and unveiling new opportunities.
+
+Additionally, the collaborative platform will support the project’s community, beyond offering a plethora of digital tools, in defining, designing, and implementing relationships, collaborations, and games. Essential elements so that the initiative eventually transforms into an ecosystem in which participants find motivation and inspiration, connect their personal goals with those of other interested parties, and share the knowledge produced.
+
+The i-Game project consortium, consisting of organizations and entities with diverse backgrounds and expertise, ensures the interdisciplinary approach required to address the complex issue of the impact of games on innovation, sustainability, social cohesion, and economic growth.
