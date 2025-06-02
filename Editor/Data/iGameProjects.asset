@@ -14,14 +14,111 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projects:
   - m_Name: Project 1
-    m_Description: My Project one
+    m_Description: "Project 1 is a mysterious and atmospheric journey through a fractured
+      digital world where reality blurs with simulation. You awaken in an abandoned
+      research facility with no memory and only one directive: uncover the truth
+      behind \u201CProject 1.\u201D\r\n\r\nAs you explore glitching corridors, decode
+      encrypted files, and interact with AI echoes of former researchers, you\u2019ll
+      slowly piece together a story of a secret experiment gone wrong\u2014one that
+      may have altered the fabric of consciousness itself. The game blends puzzle-solving,
+      stealth, and psychological storytelling in a surreal, immersive environment
+      that reacts to your choices.\r\n\r\nIn Project 1, the deeper you dig, the stranger
+      it gets. The truth is waiting\u2014but are you ready to find it?"
     m_Icon: {fileID: 2800000, guid: 4c5a5b8b4655ffd4ab94659614a22706, type: 3}
     m_CreationDatum: Today
+    m_OverallProgress:
+      m_Name: Overall Progress
+      m_Progress: 1
+    m_Progresses:
+    - m_Name: Co-Design Progress
+      m_Progress: 0.95
+    - m_Name: Art Design Progress
+      m_Progress: 0.15
+    - m_Name: Sound Design Progress
+      m_Progress: 0.15
+    - m_Name: Story Writing Progress
+      m_Progress: 0.75
+    - m_Name: Animation Progress
+      m_Progress: 0.05
+    - m_Name: Voice Recording Progress
+      m_Progress: 0.45
+    - m_Name: Frontend Development Progress
+      m_Progress: 0.1
+    - m_Name: Backend Development Progress
+      m_Progress: 0
+    - m_Name: Game Balancing Progress
+      m_Progress: 0.65
   - m_Name: Game of the Future
-    m_Description: Cool game
+    m_Description: "Game of the Future catapults players into a breathtaking vision
+      of tomorrow, where technology, society, and the human spirit are in constant
+      flux. As the architect of a futuristic civilization, you must make critical
+      decisions that shape the destiny of your world\u2014balancing innovation, ethics,
+      and survival in an age of artificial intelligence, space exploration, and post-human
+      evolution.\r\n\r\nDesign cities powered by clean energy, negotiate with synthetic
+      lifeforms, and lead your people through political intrigue, technological revolutions,
+      and interstellar crises. Every choice ripples through time, rewriting the future
+      in unexpected ways.\r\n\r\nAre you ready to build the world of tomorrow\u2014or
+      destroy it? Welcome to the Game of the Future."
     m_Icon: {fileID: 2800000, guid: 14f2ba1f1e4dbe04e94c9be4476ee18c, type: 3}
     m_CreationDatum: Tomorrow
+    m_OverallProgress:
+      m_Name: Overall Progress
+      m_Progress: 0
+    m_Progresses:
+    - m_Name: Co-Design Progress
+      m_Progress: 0.95
+    - m_Name: Art Design Progress
+      m_Progress: 0.15
+    - m_Name: Sound Design Progress
+      m_Progress: 0.15
+    - m_Name: Story Writing Progress
+      m_Progress: 0.75
+    - m_Name: Animation Progress
+      m_Progress: 0.05
+    - m_Name: Voice Recording Progress
+      m_Progress: 0.45
+    - m_Name: Frontend Development Progress
+      m_Progress: 0.1
+    - m_Name: Backend Development Progress
+      m_Progress: 0
+    - m_Name: Game Balancing Progress
+      m_Progress: 0.65
   - m_Name: Our Museum Game
-    m_Description: Scavenger hunt in a museum
+    m_Description: "Short Description:\r\nOur Museum Game invites players into the
+      grand halls of a magical, ever-changing museum, where history, art, and mystery
+      collide. Players take on the role of a young curator-in-training tasked with
+      restoring lost exhibits and uncovering the secrets of the museum\u2019s forgotten
+      wings. Through immersive storytelling and intricate puzzles, each exhibit comes
+      to life with stories spanning centuries and continents.\r\n\r\nContent Highlight
+      \u2013 Scavenger Hunt in the Museum:\r\nEmbark on a thrilling Scavenger Hunt
+      through the museum\u2019s labyrinthine corridors. Armed with a clue-filled
+      notebook and a keen eye, players must locate hidden artifacts, solve riddles
+      left by former curators, and uncover cryptic symbols etched into ancient displays.
+      Each successful find unlocks pieces of the museum\u2019s hidden history\u2014and
+      brings players closer to unraveling a centuries-old mystery buried within the
+      museum walls. Perfect for solo discovery or cooperative multiplayer adventures,
+      this mode turns every player into a detective of time."
     m_Icon: {fileID: 2800000, guid: 60c4a66f2da001e46a8a17c099893f4c, type: 3}
     m_CreationDatum: 08.05.2025
+    m_OverallProgress:
+      m_Name: Overall Progress
+      m_Progress: 0
+    m_Progresses:
+    - m_Name: Co-Design Progress
+      m_Progress: 0.95
+    - m_Name: Art Design Progress
+      m_Progress: 0.15
+    - m_Name: Sound Design Progress
+      m_Progress: 0.15
+    - m_Name: Story Writing Progress
+      m_Progress: 0.75
+    - m_Name: Animation Progress
+      m_Progress: 0.05
+    - m_Name: Voice Recording Progress
+      m_Progress: 0.45
+    - m_Name: Frontend Development Progress
+      m_Progress: 0.1
+    - m_Name: Backend Development Progress
+      m_Progress: 0
+    - m_Name: Game Balancing Progress
+      m_Progress: 0.65

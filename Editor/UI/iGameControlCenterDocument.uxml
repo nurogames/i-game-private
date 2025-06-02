@@ -17,6 +17,8 @@
                 <ui:VisualElement name="SelectedProjectMenu" class="selected-project-menu-container">
                     <ui:Label text="Label" name="SelectedProjectNameLabel" class="selected-project-menu-label" />
                     <ui:Button text="Overview" name="SelectedProjectOverviewMenuButton" tooltip="Project Overview of the selected Project" class="selected-project-menu-button" />
+                    <ui:Button text="Tasks &amp; Progress" name="TasksAndProgressMenuButton" tooltip="Project Overview of all tasks and their progress" class="selected-project-menu-button" />
+                    <ui:Button text="Asset Browser" name="AssetBrowserMenuButton" tooltip="Project Asset Browser" class="selected-project-menu-button" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Space" style="flex-grow: 1;" />
                 <ui:Button text="Package Manager" name="PackageManagerMenuButton" tooltip="i-Game Package Manager" class="menu-button" />
@@ -63,14 +65,41 @@
                         </ui:Button>
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="SelectedProjectPage" style="flex-grow: 1; flex-direction: row; align-items: center; display: none;">
+                <ui:VisualElement name="SelectedProjectPage" style="display: flex; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; flex-grow: 1;">
+                    <ui:VisualElement style="flex-direction: row; margin-bottom: 25px; flex-grow: 1;">
+                        <ui:VisualElement style="margin-right: 50px; flex-grow: 1;">
+                            <ui:Label text="Unknown Project" name="SelectedProjectTitleLabel" class="selected-project-title-label" />
+                            <ui:Label text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." name="SelectedProjectDescriptionLabel" class="selected-project-description-label" style="white-space: normal;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="SelectedProjectIconImage" style="width: 200px; height: 200px; -unity-background-scale-mode: scale-and-crop;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="InformationArea" style="flex-direction: row; justify-content: center; margin-top: 50px; flex-grow: 1; align-items: center;">
+                        <ui:Button name="PlatformButton" class="InfoButton WhiteButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W)%20Squared.png?fileID=2800000&amp;guid=045af85d966567b468b79dbcb2a5ad59&amp;type=3#i-game_Logo (B&amp;W) Squared&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="i-Game Platform" name="InfoButtonLabel" class="InfoButtonLabel" />
+                        </ui:Button>
+                        <ui:Button name="GDDButton" class="InfoButton YellowButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_License.png?fileID=2800000&amp;guid=bd1cbf63704a9cc46826edb5aab9bef8&amp;type=3#Icon_License&quot;);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="GDD" name="InfoButtonLabel" class="InfoButtonLabel" />
+                        </ui:Button>
+                        <ui:Button name="CodesignButton" class="InfoButton PinkButton">
+                            <ui:VisualElement name="InfoButtonIcon" class="InfoButtonIcon" style="background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_Codesign.png?fileID=2800000&amp;guid=52e0b22d05ff2cf4b8d8a9232e6f3852&amp;type=3#Icon_Codesign&quot;);" />
+                            <ui:VisualElement name="Space" style="flex-grow: 1;" />
+                            <ui:Label text="Co-Design" name="CoDesignProjectButton" class="InfoButtonLabel" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="TasksAndProgressPage" style="flex-grow: 1; display: none; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;" />
+                <ui:VisualElement name="AssetBrowserPage" style="flex-grow: 1; flex-direction: row; align-items: center; display: none;">
                     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/i-game_Logo%20(B&amp;W).png?fileID=2800000&amp;guid=60c4a66f2da001e46a8a17c099893f4c&amp;type=3#i-game_Logo (B&amp;W)&quot;); -unity-background-scale-mode: scale-to-fit; width: 300px; height: 750px; margin-left: 100px;" />
                     <ui:VisualElement style="flex-grow: 1; margin-right: 200px;">
                         <ui:Label text="WORK IN&#10;PROGRESS" name="Label" style="font-size: 75px; -unity-font-style: bold; -unity-text-align: upper-center;" />
                         <ui:Label text="i-Game Unity &#10;Tools Package" name="Label" style="font-size: 36px; -unity-font-style: bold; -unity-text-align: upper-center; margin-top: 16px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="PackageManagerPage" style="flex-grow: 1; flex-direction: row; display: flex;">
+                <ui:VisualElement name="PackageManagerPage" style="flex-grow: 1; flex-direction: row; display: none;">
                     <ui:ScrollView horizontal-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; border-right-width: 1px; border-right-color: rgb(51, 51, 51);" />
                     <ui:VisualElement name="PackageInfoArea" style="flex-grow: 1; flex-shrink: 0; width: 60%; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;">
                         <ui:VisualElement name="PackageInfoHeader" style="flex-direction: row;">

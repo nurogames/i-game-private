@@ -56,7 +56,7 @@
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    margin-left: 0;
+    margin-left: 5px;
     -unity-text-align: upper-center;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -200,7 +200,6 @@
     padding-right: 15px;
     padding-bottom: 15px;
     padding-left: 15px;
-        
     flex-direction: row;
 }
 
@@ -311,4 +310,15 @@
 .package-manager-info-small-label {
     color: rgb(70, 70, 70);
     font-size: 12px;
+}
+
+.selected-project-title-label {
+    -unity-font-style: bold;
+    color: rgb(20, 20, 20);
+    font-size: 24px;
+}
+
+.selected-project-description-label {
+    color: rgb(50, 50, 50);
+    font-size: 16px;
 }

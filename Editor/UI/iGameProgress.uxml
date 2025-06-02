@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Button style="height: 120px; justify-content: center; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;">
+        <ui:Label text="Label" name="ProgressTitleLabel" style="font-size: 20px; -unity-font-style: bold; margin-bottom: 8px;" />
+        <ui:VisualElement style="flex-direction: row; align-items: center;">
+            <ui:VisualElement style="width: 30px; height: 30px; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_Start.png?fileID=2800000&amp;guid=85a64e2f6385b454e9b6beacfa693a2e&amp;type=3#Icon_Start&quot;);" />
+            <ui:ProgressBar value="0.5" name="ProgressBar" high-value="1" style="flex-grow: 1; margin-left: 10px; margin-right: 10px;" />
+            <ui:VisualElement style="width: 30px; height: 30px; background-image: url(&quot;project://database/Packages/com.nuro.i-game.core/Editor/Icons/Icon_Finish.png?fileID=2800000&amp;guid=2507952e218a245479f233a00a204ab9&amp;type=3#Icon_Finish&quot;);" />
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

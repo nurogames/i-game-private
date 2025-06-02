@@ -1,10 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Linq;
-using UnityEditor.SceneManagement;
-using UnityEditor.PackageManager;
 
 namespace iGame.Editor
 {
@@ -24,6 +23,8 @@ namespace iGame.Editor
 
         private static iGameProject m_SelectedProject = null;
         private static iGamePackage m_SelectedPackage = null;
+
+        private const string EDITOR_TOKEN_KEY = "iGameToken";
 
         // Public menu functions
         [MenuItem("i-Game/Control Center", priority = 0)]
@@ -49,6 +50,7 @@ namespace iGame.Editor
         [MenuItem("i-Game/Logout")]
         public static void Logout()
         {
+            EditorPrefs.DeleteKey(EDITOR_TOKEN_KEY);
             m_IsLoggedIn = false;
         }
 
@@ -81,12 +83,12 @@ namespace iGame.Editor
 
         private void SetupLogin(VisualElement loginPage)
         {
-            loginPage.style.display = m_IsLoggedIn ? DisplayStyle.None : DisplayStyle.Flex;
+            loginPage.style.display = IsLoggedIn() ? DisplayStyle.None : DisplayStyle.Flex;
 
             if (m_Window == null)
                 m_Window = GetWindow<iGameControlCenter>(true, "i-Game");
 
-            if (m_IsLoggedIn)
+            if (IsLoggedIn())
             {
                 m_Window.minSize = new Vector2(1200, 800);
                 m_Window.maxSize = new Vector2(1200, 800);
@@ -104,29 +106,19 @@ namespace iGame.Editor
             {
                 string email = emailField.value;
                 string password = passwordField.value;
-                // Perform login logic here
-                Debug.Log($"Email: {email}, Password: {password}");
-                m_IsLoggedIn = true;
-
-                // Switch to main page after login
-                loginPage.style.display = DisplayStyle.None;
-                loginPage.parent.Q("MainPage").style.display = DisplayStyle.Flex;
-
-                if(m_Window == null)
-                    m_Window = GetWindow<iGameControlCenter>(true, "i-Game");
-
-                m_Window.minSize = new Vector2(1200, 800);
-                m_Window.maxSize = new Vector2(1200, 800);
+                Login(email, password);
             };
         }
 
         private void SetupMainPage(VisualElement mainPage)
         {
-            mainPage.style.display = m_IsLoggedIn ? DisplayStyle.Flex : DisplayStyle.None;
+            mainPage.style.display = IsLoggedIn() ? DisplayStyle.Flex : DisplayStyle.None;
             SetupMenu(mainPage);
             SetupGeneralPage(mainPage.Q("GeneralPage"));
             SetupProjectsPage(mainPage.Q("ProjectsPage"), mainPage);
             SetupSelectedProjectPage(mainPage.Q("SelectedProjectPage"));
+            SetupTasksAndProgressPage(mainPage.Q("TasksAndProgressPage"));
+            SetupAssetBrowserPage(mainPage.Q("AssetBrowserPage"));
             SetupPackageManagerPage(mainPage.Q("PackageManagerPage"));
             SetupSettingsPage(mainPage.Q("SettingsPage"));
             SetupTextWindow(mainPage.Q("TextWindow"));
@@ -142,6 +134,8 @@ namespace iGame.Editor
             m_Pages.Add(menu.Q<Button>("GeneralMenuButton"), menu.Q("GeneralPage"));
             m_Pages.Add(menu.Q<Button>("ProjectsMenuButton"), menu.Q("ProjectsPage"));
             m_Pages.Add(menu.Q<Button>("SelectedProjectOverviewMenuButton"), menu.Q("SelectedProjectPage"));
+            m_Pages.Add(menu.Q<Button>("TasksAndProgressMenuButton"), menu.Q("TasksAndProgressPage"));
+            m_Pages.Add(menu.Q<Button>("AssetBrowserMenuButton"), menu.Q("AssetBrowserPage"));
             m_Pages.Add(menu.Q<Button>("PackageManagerMenuButton"), menu.Q("PackageManagerPage"));
             m_Pages.Add(menu.Q<Button>("SettingsMenuButton"), menu.Q("SettingsPage"));
 
@@ -211,14 +205,110 @@ namespace iGame.Editor
                 creationDateLabel.AddToClassList("project-button-date-label");
 
                 Label descriptionLabel = new Label();
+                descriptionLabel.style.whiteSpace = WhiteSpace.Normal;
                 infoContainer.Add(descriptionLabel);
-                descriptionLabel.text = project.Description;
+
+                string description = string.IsNullOrEmpty(project.Description) ? "" : 
+                    (project.Description.Length > 300 ? 
+                    project.Description.Substring(0, 300) + "..." : project.Description);
+
+                descriptionLabel.text = description;
                 descriptionLabel.AddToClassList("project-button-label");
 
             }
         }
 
         private void SetupSelectedProjectPage(VisualElement selectedProjectPage)
+        {
+            if(m_SelectedProject == null)
+                return;
+
+            Label projectNameLabel = selectedProjectPage.Q<Label>("SelectedProjectTitleLabel");
+            projectNameLabel.text = m_SelectedProject != null ? m_SelectedProject.Name : "No Project Selected";
+
+            Label projectDescriptionLabel = selectedProjectPage.Q<Label>("SelectedProjectDescriptionLabel");
+            projectDescriptionLabel.text = m_SelectedProject != null ? m_SelectedProject.Description : "No Project Selected";
+
+            VisualElement projectIcon = selectedProjectPage.Q("SelectedProjectIconImage");
+            projectIcon.style.backgroundImage = m_SelectedProject.Icon;
+
+            Button platformButton = selectedProjectPage.Q<Button>("PlatformButton");
+            platformButton.clicked -= OpenPlatform;
+            platformButton.clicked += OpenPlatform;
+
+            Button gddButton = selectedProjectPage.Q<Button>("GDDButton");
+            gddButton.clicked -= OpenGDD;
+            gddButton.clicked += OpenGDD;
+
+            Button codesignButton = selectedProjectPage.Q<Button>("CodesignButton");
+            codesignButton.clicked -= OpenCodesign;
+            codesignButton.clicked += OpenCodesign;
+        }
+
+        private void SetupTasksAndProgressPage(VisualElement tasksAndProgressPage)
+        {
+            tasksAndProgressPage.Clear();
+
+            if (m_SelectedProject == null)
+                return;
+
+            VisualTreeAsset progressTemplate =
+                AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.nuro.i-game.core/Editor/UI/iGameProgress.uxml");
+
+            float overallProgress = 0.0f;
+            foreach (iGameProgress progress in m_SelectedProject.Progresses)
+            {
+                overallProgress += progress.Progress;
+            }
+            overallProgress /= m_SelectedProject.Progresses.Length;
+            m_SelectedProject.OverallProgress.ChangeProgress(overallProgress);
+           
+            CreateProgress(tasksAndProgressPage, progressTemplate, m_SelectedProject.OverallProgress, false);
+
+            for (int i = 0; i < m_SelectedProject.Progresses.Length; i++)
+            {
+                VisualElement progressRow = new VisualElement();
+                progressRow.style.flexDirection = FlexDirection.Row;
+                tasksAndProgressPage.Add(progressRow);
+
+                CreateProgress(progressRow, progressTemplate, m_SelectedProject.Progresses[i], true);
+                i++;
+                if (i < m_SelectedProject.Progresses.Length)
+                {
+                    CreateProgress(progressRow, progressTemplate, m_SelectedProject.Progresses[i], true);
+                }
+                i++;
+                if (i < m_SelectedProject.Progresses.Length)
+                {
+                    CreateProgress(progressRow, progressTemplate, m_SelectedProject.Progresses[i], true);
+                }
+            }
+        }
+
+        private void CreateProgress(VisualElement parent, VisualTreeAsset template, iGameProgress progress, bool fillRow)
+        {
+            VisualElement progressElement = template.Instantiate();
+            if (fillRow)
+            {
+                progressElement.style.flexGrow = 1;
+                progressElement.style.width = new StyleLength(new Length(0.333f, LengthUnit.Percent));
+            }
+
+            parent.Add(progressElement);
+
+            Label progressLabel = progressElement.Q<Label>("ProgressTitleLabel");
+            progressLabel.text = progress.Name;
+
+            ProgressBar progressBar = progressElement.Q<ProgressBar>("ProgressBar");
+            progressBar.value = progress.Progress;
+
+            progress.onProgressChanged = (newProgress) =>
+            {
+                progressBar.value = newProgress;
+            };
+        }
+
+        private void SetupAssetBrowserPage(VisualElement assetBrowserPage)
         {
 
         }
@@ -311,6 +401,14 @@ namespace iGame.Editor
 
             Button overviewButton = mainPage.Q<Button>("SelectedProjectOverviewMenuButton");
             OpenMenu(overviewButton);
+            SetupProjectPages(mainPage);
+        }
+
+        private void SetupProjectPages(VisualElement mainPage)
+        {
+            SetupSelectedProjectPage(mainPage.Q("SelectedProjectPage"));
+            SetupTasksAndProgressPage(mainPage.Q("TasksAndProgressPage"));
+            SetupAssetBrowserPage(mainPage.Q("AssetBrowserPage"));
         }
 
         private void DisplayTextWindow(string text)
@@ -404,7 +502,7 @@ namespace iGame.Editor
             var listRequest = Client.List(true);
             while (!listRequest.IsCompleted)
             {
-
+                // wait for the request to complete
             }
 
             if (listRequest.Status == StatusCode.Success)
@@ -412,5 +510,41 @@ namespace iGame.Editor
 
             return false;
         }
+
+        private void Login(string email, string password)
+        {
+            Debug.Log($"Email: {email}, Password: {password}");
+            m_IsLoggedIn = true;
+
+            EditorPrefs.SetString(EDITOR_TOKEN_KEY, System.Guid.NewGuid().ToString());
+
+            VisualElement loginPage = rootVisualElement.Q("LoginPage");
+            loginPage.style.display = DisplayStyle.None;
+            loginPage.parent.Q("MainPage").style.display = DisplayStyle.Flex;
+
+            if (m_Window == null)
+                m_Window = GetWindow<iGameControlCenter>(true, "i-Game");
+
+            m_Window.minSize = new Vector2(1200, 800);
+            m_Window.maxSize = new Vector2(1200, 800);
+        }
+
+        private bool IsLoggedIn()
+        {
+            if(!m_IsLoggedIn)
+            {
+                if (EditorPrefs.HasKey(EDITOR_TOKEN_KEY))
+                {
+                    string token = EditorPrefs.GetString(EDITOR_TOKEN_KEY);
+                    m_IsLoggedIn = !string.IsNullOrEmpty(token);
+                }
+            }
+
+            return m_IsLoggedIn;
+        }
+
+        private void OpenPlatform() => Application.OpenURL("https://igameproject.eu/");
+        private void OpenGDD() => Application.OpenURL("https://igameproject.eu/wp-content/uploads/2024/05/i-Game_BrochureA5.pdf");
+        private void OpenCodesign() => Application.OpenURL("https://igameproject.eu/outputs-and-results/co-creating-games/");
     }
 }
